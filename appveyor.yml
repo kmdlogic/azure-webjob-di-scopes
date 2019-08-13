@@ -1,0 +1,19 @@
+version: '{build}'
+skip_tags: true
+image:
+  - Visual Studio 2017
+  - Ubuntu
+configuration: Release
+test: off
+build_script:
+- ps: ./build.ps1
+for:
+-
+  matrix:
+    only:
+      - image: Ubuntu
+  build_script:
+  - dotnet --info
+  - dotnet --list-sdks
+  - pwsh -v
+  - sh build.sh
